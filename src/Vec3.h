@@ -30,20 +30,21 @@ public:
     };
 
 public:
-    Vec3() NOEXCEPT = default;
+    explicit Vec3() NOEXCEPT = default;
 
     // Create a vector w/ the same value for each component
     explicit Vec3(const rreal value) NOEXCEPT :
         Vec3(value, value, value)
     { }
 
-    Vec3(const rreal x_, const rreal y_, const rreal z_) NOEXCEPT :
+    explicit Vec3(const rreal x_, const rreal y_, const rreal z_) NOEXCEPT :
         x(x_),
         y(y_),
         z(z_)
     { }
 
-    Vec3(const Vec3 &other) NOEXCEPT :
+/*
+    explicit Vec3(const Vec3 &other) NOEXCEPT :
         x(other.x),
         y(other.y),
         z(other.z)
@@ -60,6 +61,7 @@ public:
 
         return *this;
     }
+*/
 
     // Negation
     inline Vec3 operator-() const NOEXCEPT {
@@ -120,12 +122,12 @@ public:
     }
 
     inline Vec3 reflect(const Vec3 &n) const NOEXCEPT {
-        const Vec3 v = *this;
+        const Vec3 v(*this);
         return v - (2 * v.dot(n) * n);
     }
 
     Vec3 refract(const Vec3 &n, const rreal etai_over_etat) const NOEXCEPT {
-        const Vec3 uv = *this;
+        const Vec3 uv(*this);
         const rreal cos_theta = (-uv).dot(n);
         const Vec3 r_out_perp = etai_over_etat * (uv + (cos_theta * n));
         const Vec3 r_out_parallel = -util::sqrt(std::fabs(1 - r_out_perp.length_squared())) * n;

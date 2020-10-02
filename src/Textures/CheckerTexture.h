@@ -17,11 +17,13 @@ public:
     rreal z_frequency = 10;
 
 public:
-    CheckerTexture(
+    explicit CheckerTexture(
         const std::shared_ptr<ITexture> &even,
         const std::shared_ptr<ITexture> &odd
     ) NOEXCEPT;
-    CheckerTexture(const Vec3 &even_clr, const Vec3 &odd_clr) NOEXCEPT;
+    explicit CheckerTexture(const Vec3 &even_clr, const Vec3 &odd_clr) NOEXCEPT;
+
+    virtual std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
 
     virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

@@ -33,7 +33,7 @@ private:
     RNG _rng;
 
 public:
-    _GeneralizedRandomGenerator(const std::string &rng_seed) NOEXCEPT :
+    explicit _GeneralizedRandomGenerator(const std::string &rng_seed) NOEXCEPT :
         _rng_distribution(0, 1),
         _seed(rng_seed.begin(), rng_seed.end()),
         _rng(_seed)

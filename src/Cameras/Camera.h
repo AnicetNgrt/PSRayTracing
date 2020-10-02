@@ -16,7 +16,7 @@ protected:
     rreal _lens_radius;
 
 public:
-    Camera(
+    explicit Camera(
         const Vec3 &look_from,
         const Vec3 &look_at,
         const Vec3 &v_up,
@@ -25,6 +25,8 @@ public:
         const rreal aperature,
         const rreal focus_dist
     ) NOEXCEPT;
+
+    virtual std::shared_ptr<ICamera> deep_copy() const NOEXCEPT override;
 
     virtual Ray get_ray(RandomGenerator &rng, const rreal s, const rreal t) const NOEXCEPT override;
 };

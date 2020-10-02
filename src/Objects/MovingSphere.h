@@ -12,13 +12,15 @@ public:
     std::shared_ptr<IMaterial> _mat_ptr = nullptr;
 
 public:
-    MovingSphere() NOEXCEPT = default;
-    MovingSphere(
+    explicit MovingSphere() NOEXCEPT = default;
+    explicit MovingSphere(
         const Vec3 &center0, const Vec3 &center1,
         const rreal time0, const rreal time1,
         const rreal r,
         const std::shared_ptr<IMaterial> &mat_ptr
     ) NOEXCEPT;
+
+    virtual std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;

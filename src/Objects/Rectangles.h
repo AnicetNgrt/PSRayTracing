@@ -16,7 +16,7 @@ private:
     std::shared_ptr<IMaterial> _mat_ptr;
 
 public:
-    XYRect(
+    explicit XYRect(
         const rreal x0,
         const rreal x1,
         const rreal y0,
@@ -24,6 +24,8 @@ public:
         const rreal k,
         std::shared_ptr<IMaterial> mat
     ) NOEXCEPT;
+
+    virtual std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;
@@ -39,7 +41,7 @@ private:
     std::shared_ptr<IMaterial> _mat_ptr;
 
 public:
-    XZRect(
+    explicit XZRect(
         const rreal x0,
         const rreal x1,
         const rreal z0,
@@ -47,6 +49,8 @@ public:
         const rreal k,
         std::shared_ptr<IMaterial> mat
     ) NOEXCEPT;
+
+    virtual std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;
@@ -62,7 +66,7 @@ private:
     std::shared_ptr<IMaterial> _mat_ptr;
 
 public:
-    YZRect(
+    explicit YZRect(
         const rreal y0,
         const rreal y1,
         const rreal z0,
@@ -70,6 +74,8 @@ public:
         const rreal k,
         std::shared_ptr<IMaterial> mat
     ) NOEXCEPT;
+
+    virtual std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;

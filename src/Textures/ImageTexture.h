@@ -13,8 +13,9 @@ private:
     int _bytes_per_scanline = 0;
 
 public:
-    ImageTexture(const char *filename);
+    explicit ImageTexture(const char *filename);
+
+    virtual std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
 
     virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
-
 };
